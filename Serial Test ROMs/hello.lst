@@ -1,0 +1,52 @@
+                        ; --------------------------------------
+                        ; zasm: assemble "hello.asm"
+                        ; date: 2025-07-04 23:16:04
+                        ; --------------------------------------
+
+
+                        ; Simple "Hello, world!" for Z80 with 6850 UART at 80h/81h
+                        
+0FAD:                   CHOUT:  EQU     $0FAD         ; Character output routine address in monitor
+                        
+7860:                           ORG     $7860         ; Start at user code address in RAM
+                        
+                        
+7860:                   START:
+7860: 217278   [10]             LD      HL,MSG         ; HL points to message
+                        
+7863: 7E       [ 7]     NEXTCH: LD      A,(HL)         ; Get next character
+7864: B7       [11]             OR      A              ; End of string? (A==0)
+7865: CA6F78   [21|21]          JP      Z,DONE         ; If zero, we're done
+                        
+7868: CDAD0F   [38]             CALL    CHOUT          ; Output character in A
+786B: 23       [44]             INC     HL             ; Next character
+786C: C36378   [54]             JP      NEXTCH         ; Loop
+                        
+786F: C36F78   [10]     DONE:   JP      DONE           ; Halt (infinite loop)
+                        
+                        
+                        
+                        ; VT100 clear screen: ESC [ 2 J, ESC [ H
+7872: 48656C6C          MSG:    DB      'Hello, world!',13,10,0  ; Clear screen, home, message, CR, LF, zero-terminated
+7876: 6F2C2077          
+787A: 6F726C64          
+787E: 210D0A00          
+
+
+; +++ segments +++
+
+#CODE          = $7860 = 30816,  size = $0022 =    34
+
+; +++ global symbols +++
+
+CHOUT   = $0FAD =  4013          hello.asm:3
+DONE    = $786F = 30831          hello.asm:19
+MSG     = $7872 = 30834          hello.asm:24
+NEXTCH  = $7863 = 30819          hello.asm:11
+START   = $7860 = 30816          hello.asm:8 (unused)
+_end    = $7882 = 30850          hello.asm:5 (unused)
+_size   = $0022 =    34          hello.asm:5 (unused)
+
+
+total time: 0.0011 sec.
+no errors

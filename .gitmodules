@@ -1,0 +1,3 @@
+[submodule "Serial Test ROMs/modules/monz80-updates"]
+	path = Serial Test ROMs/modules/monz80-updates
+	url = https://github.com/lindoran/monz80-updates.git

@@ -53,8 +53,8 @@ $(MONZ80_HEX): $(MONZ80_SRC)
 # ---------- Merge ROMs ----------
 $(MERGED_HEX): $(MONZ80_HEX) $(IHX_FILE)
 	$(SREC_CAT) $(MONZ80_HEX) -intel \
-		$(IHX_FILE)   -intel \
-		-o $@ -intel
+				$(IHX_FILE)   -intel -crop 0x1000 0xFFFF \
+				-o $@ -intel
 
 $(MERGED_BIN): $(MERGED_HEX)
 	$(SREC_CAT) $< -intel -o $@ -binary

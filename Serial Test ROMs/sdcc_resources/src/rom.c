@@ -34,3 +34,17 @@ void puts(const char* s) {
         putc(*s++);
     }
 }
+
+// convert 8 bit number to hex ascii
+void puthex8(unsigned char val) {
+    const char* hex = "0123456789ABCDEF";
+    putc(hex[(val >> 4) & 0x0F]);
+    putc(hex[val & 0x0F]);
+}
+
+
+//convert 16 bit to hex ascii
+void puthex16(unsigned int val) {
+    puthex8((val >> 8) & 0xFF);
+    puthex8(val & 0xFF);
+}

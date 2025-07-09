@@ -7,6 +7,6 @@
 
 .area _CODE
 _start:
-    ld sp, #0x00FF   ; Safe stack at low RAM
+    ld sp, #0x78FF   ; Safe stack at low RAM
     call _main
     jp 0x00E7        ; Return to monitor

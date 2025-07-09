@@ -1,0 +1,12 @@
+-mjwx
+-i bin/romtest.ihx
+-b _CODE = 0x1003
+-b _DATA = 0x1500
+-k /usr/bin/../share/sdcc/lib/z80
+-k /usr/share/sdcc/lib/z80
+-l z80
+build/main.rel
+build/rom.rel
+build/crt0_romtest.rel
+
+-e

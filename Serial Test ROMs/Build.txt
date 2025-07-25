@@ -1,0 +1,46 @@
+Build Instructions for Serial Test ROMs
+=======================================
+
+Requirements:
+-------------
+You will need the following tools installed:
+- SDCC (Small Device C Compiler)
+- zasm (Z80 assembler)
+- srecord (for manipulating binary files)
+- xxd (hex dump utility)
+- GNU make
+
+Submodule Setup:
+----------------
+If the submodule is missing, initialize and update it with:
+
+    git submodule update --init --recursive
+
+Building Everything:
+--------------------
+To build all targets, simply run:
+
+    make
+
+This will compile the source code and generate the required ROM files.
+
+Directory Structure After Build:
+-------------------------------
+After building, the subfolders are organized as follows:
+
+- `bin/`  
+  Contains the final ROM binaries ready for use.
+
+- `obj/`  
+  Contains intermediate object files generated during compilation.
+
+- `src/`  
+  Contains the source code for the project.
+
+- `tools/`  
+  Contains scripts and utilities used in the build process.
+
+Notes:
+------
+- Ensure all required tools are available in your PATH.
+- If you encounter errors related to missing tools, install them using your system's package manager.

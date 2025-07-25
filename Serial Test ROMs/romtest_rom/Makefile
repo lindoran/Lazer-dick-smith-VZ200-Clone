@@ -71,3 +71,4 @@ $(BIN_DIR):
 
 clean:
 	rm -rf $(BUILD_DIR) $(BIN_DIR)
+	cd ../modules/monz80-updates && $(MAKE) clean
